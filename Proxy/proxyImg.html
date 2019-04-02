@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 创建标签，设置src
+    let image = (function () {
+        let imgNode = document.createElement("img")
+        document.body.appendChild(imgNode)
+        return {
+            setSrc: function (src) {
+                imgNode.src = src
+            }
+        }
+    })()
+
+    // 代理负责图片预加载
+    let proxyImg = (function () {
+        let img = new Image()
+        img.onload = function () {
+            image.setSrc(img.src)
+        }
+        return {
+            setSrc: function (src) {
+                image.setSrc('loading.jpg')
+                img.src = src
+            }
+        }
+    })()
+
+    proxyImg.setSrc('http://pic49.nipic.com/file/20140926/9422601_102539153000_2.jpg')
+</script>
+</html>

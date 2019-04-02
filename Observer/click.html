@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 其实在DOM节点上绑定Click事件也是JS和DOM之间的一种观察者模式.
+    // 订阅消息1
+    document.body.addEventListener('click', function () {
+        console.log('hi');
+    }, false)  // false 冒泡
+    // 订阅消息2
+    document.body.addEventListener('click', function () {
+        console.log('hello');
+    }, false)
+    // 监听了document.body的动作，但是不知道用户何时点击，因此订阅了document.body的click事件，
+    // 当body点击时，body节点向订阅者发布消息
+    document.body.click()
+</script>
+</body>
+</html>

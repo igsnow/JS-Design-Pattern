@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 不使用代理模式图片预加载
+    let preLoadImg = (function () {
+        let imgNode = document.createElement("img")
+        document.body.appendChild(imgNode)
+        let img = new Image()
+        img.onload = function () {
+            imgNode.src = img.src
+        }
+        return {
+            setSrc: function (src) {
+                imgNode.src = 'loading.jpg'
+                img.src = src
+            }
+        }
+    })()
+
+    preLoadImg.setSrc('http://pic49.nipic.com/file/20140926/9422601_102539153000_2.jpg')
+</script>
+</html>
