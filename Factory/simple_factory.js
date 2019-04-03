@@ -4,30 +4,20 @@
  * @constructor
  */
 let UserFactory = function (role) {
-    function SuperAdmin() {
-        this.name = '超级管理员'
-        this.page = ['首页', '通讯录', '数据视图', '权限管理']
-    }
-
-    function Admin() {
-        this.name = '管理员'
-        this.page = ['首页', '通讯录', '数据视图']
-    }
-
-    function Visitor() {
-        this.name = '游客'
-        this.page = ['首页', '数据视图']
+    function User(args) {
+        this.name = args.name
+        this.page = args.page
     }
 
     switch (role) {
         case  'superAdmin':
-            return new SuperAdmin()
+            return new User({name: '超级管理员', page: ['首页', '通讯录', '数据视图', '权限管理']})
             break
         case 'admin':
-            return new Admin()
+            return new User({name: '管理员', page: ['首页', '通讯录', '数据视图']})
             break
         case 'visitor':
-            return new Visitor()
+            return new User({name: '游客', page: ['首页', '数据视图']})
             break
         default:
             throw new Error('参数有误！')
