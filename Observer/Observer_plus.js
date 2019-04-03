@@ -18,13 +18,13 @@ salesOffices.listen = function (key, fn) {
 }
 // 发布消息
 salesOffices.trigger = function () {
-    let key = Array.prototype.shift.call(arguments)
+    let key = Array.prototype.shift.call(arguments)  // 拆分参数，第一个参数是订阅类型，剩下的价格参数传给listen函数
     let fns = this.clientList[key]
-    if (!fns && fns.length === 0) {
+    if (!fns || fns.length === 0) {
         return false
     }
     for (let i = 0, fn; fn = fns[i++];) {
-        fn.apply(this, arguments)
+        fn.apply(null, arguments)
     }
 }
 // 小张订阅88平的楼盘

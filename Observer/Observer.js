@@ -14,7 +14,7 @@ salesOffices.listen = function (fn) {
 salesOffices.trigger = function () {
     // 遍历花名册，给留电话的用户发短信
     for (let i = 0, fn; fn = this.clientList[i++];) {
-        fn.apply(null, Array.from(arguments).slice(1))
+        fn.call(null, arguments[1])   // 将trigger第二个价格参数传入listen函数
     }
 }
 // 小张订阅售楼消息
